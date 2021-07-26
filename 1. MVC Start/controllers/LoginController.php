@@ -11,10 +11,8 @@ class LoginController extends BaseController
         $data = $request->getBody();
 
         if ($data['email'] == 'admin@admin.com' && $data['password'] == '1234') {
-            $data = [
-                'name'=> 'Admin'
-            ];
-            return $this->render('home', $data);
+            $_SERVER['REQUEST_URI'] = '/home';
+            return Application::$app->router->resolve();
         } else {
             return $this->render('login');
         }
