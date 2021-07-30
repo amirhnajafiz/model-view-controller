@@ -1,0 +1,16 @@
+{
+    "name": "amirh/mvc",
+    "description": "Create a website based on MVC model",
+    "autoload": {
+        "psr-4": {
+            "mvc\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Amirhossein Najafizadeh",
+            "email": "najafizadeh21@gmail.com"
+        }
+    ],
+    "require": {}
+}
