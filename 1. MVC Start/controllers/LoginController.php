@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Request;
 use app\core\Application;
+use app\controllers\HomeController;
 
 class LoginController extends BaseController
 {
@@ -11,8 +12,8 @@ class LoginController extends BaseController
         $data = $request->getBody();
 
         if ($data['email'] == 'admin@admin.com' && $data['password'] == '1234') {
-            $_SERVER['REQUEST_URI'] = '/home';
-            return Application::$app->router->resolve();
+            $hc = new HomeController();
+            return $hc->home("Admin", $redirect=TRUE);
         } else {
             return $this->render('login');
         }

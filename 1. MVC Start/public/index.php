@@ -20,7 +20,7 @@ $app->router->get('/', function() {
     return "Hello World";
 });
 
-$app->router->get('/about', 'about'); // only view
+$app->router->get('/about', 'about'); 
 
 $app->router->get('/home', [HomeController::class, 'home']);
 
