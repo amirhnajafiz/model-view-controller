@@ -1,6 +1,6 @@
 <?php 
 
-namespace mvc\core;
+namespace app\core;
 
 use app\core\Request;
 use app\core\Response;

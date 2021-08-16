@@ -2,40 +2,72 @@
 
 namespace app\core;
 
+/**
+ * The request class handles the user requests
+ * to server.
+ * 
+ */
 class Request
 {
-    public function getPath()
+    /**
+     * This method sets the path of the request.
+     * 
+     * @param path is the new path
+     */
+    public function setPath($path)
     {
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $pos = strpos($path, '?');
-        
-        if ($pos === false) {
-            return $path;
-        }
-
-        return substr($path, 0, $pos);
+        $_SERVER['REQUEST_URI'] = $path;
     }
 
+    /**
+     * This method sets the method of request.
+     * 
+     * @param method is the request method
+     */
+    public function setMethod($method)
+    {
+        $_SERVER['REQUEST_METHOD'] = $method;
+    }
+
+    /**
+     * This method gets the path of the request.
+     * 
+     * @return path the path of user request
+     */
+    public function getPath()
+    {
+        $URI = $_SERVER['REQUEST_URI'];
+        $pos = strpos("?", $URI);
+        $URI = $pos === FALSE ? $URI : substr($URI, 0, $pos);
+        $URI = rtrim($URI, "/");
+        return $URI == "" ? "/" : $URI;
+    }
+
+    /**
+     * This method gets the method of request.
+     * 
+     * @return method the request method
+     */
     public function getMethod()
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function getBody() {
-        $body = [];
-
-        if ($this->getMethod() == 'get') {
-            foreach ($_GET as $key => $value) {
-                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
-            }
+    /**
+     * This method gets the data of request.
+     * 
+     * @return data the request data body
+     */
+    public function getBody()
+    {
+        $list = $this->getMethod() == 'post' ? $_POST : $_GET;
+        $data = [];
+        foreach($list as $key => $value) 
+        {
+            $data[$key] = $value;
         }
-
-        if ($this->getMethod() == 'post') {
-            foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-        }
-
-        return $body;
+        return $data;
     }
 }
+
+?>
