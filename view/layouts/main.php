@@ -10,9 +10,9 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body style="height:100vh;">
     
-    <div class="container">
+    <div class="container-fluid" style="height:100vh;">
         {{content}}
     </div>
 
