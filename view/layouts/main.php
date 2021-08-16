@@ -11,6 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    
     <div class="container">
         {{content}}
     </div>
