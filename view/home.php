@@ -1,4 +1,4 @@
 <h1>
     Welcome to mvc architecture <?php echo $name; ?>.
 </h1>
-<a href="/about">About us.</a>
+<a href="/about_us">About us.</a>
