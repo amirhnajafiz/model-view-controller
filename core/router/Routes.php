@@ -1,8 +1,8 @@
 <?php
 
-namespace mvc\core\router;
+namespace app\core\router;
 
-use app\core\App;
+use app\core\Application;
 use app\controller\HomeController;
 
 /**
@@ -18,7 +18,7 @@ class Routes
      */
     public static function getRoutes()
     {
-        $app = App::get_instance();
+        $app = Application::get_instance();
 
         // Write your routes here
         $app->router->get('/', [HomeController::class, 'index'])->name("home");

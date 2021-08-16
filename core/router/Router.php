@@ -1,42 +1,116 @@
 <?php
 
-namespace app\core;
+namespace app\core\router;
 
+use app\core\Application;
+use app\core\Request;
+use app\core\Response;
+use app\core\router\Route;
+use app\core\view\RenderEngine;
+
+/**
+ * The router class, manages the routes of our website
+ * based on the user request.
+ * 
+ */
 class Router
 {
+    // Router tools
     public Request $request;
     public Response $response;
-
+    // Router routes
     protected $routes = [];
 
-    public function __construct($request, $response) {
+    /**
+     * The constructor of our router.
+     * 
+     * @param request is the user request to our website
+     * @param response is the response for our user request
+     */
+    public function __construct($request, $response)
+    {
         $this->request = $request;
         $this->response = $response;
     }
 
-    public function get($path, $callback) {
-        $this->routes['get'][$path] = $callback;
+    /**
+     * Get method handles the get requests to our website.
+     * 
+     * @param path is the path of the request
+     * @param Route created route object
+     */
+    public function get($path, $callback)
+    {
+        return $this->routes['get'][] = new Route($path, $callback);
     }
 
-    public function post($path, $callback) {
-        $this->routes['post'][$path] = $callback;
+    /**
+     * Post method handles the post requests to our website.
+     * 
+     * @param path is the path of the request
+     * @param Route created route object
+     */
+    public function post($path, $callback)
+    {
+        return $this->routes['post'][] = new Route($path, $callback);
     }
 
-    public function resolve() {
+    /**
+     * This method gets the URL of a route
+     * based on its name.
+     * 
+     * @param name the route name
+     * @return URL the route paths
+     */
+    public function getURL($name) 
+    {
+        foreach($this->routes as $method) {
+            foreach($method as $route) {
+                if ($route->getName() == $name) {
+                    return $route->getPath();
+                }
+            }
+        }
+        return "/";
+    }
+
+    /**
+     * This method gets the callback function of a route.
+     * 
+     * @param path the wanted route path
+     * @param method request method
+     * @return callback the route callback function
+     */
+    public function getCallBack($path, $method)
+    {
+        foreach($this->routes[$method] as $route) {
+            if ($route->check($path)) {
+                return $route->getCallback();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Resolve method does the rendering in router.
+     * 
+     * @return view what will it show to user
+     */
+    public function resolve()
+    {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
         
-        $callback = $this->routes[$method][$path] ?? false;
+        $callback = $this->getCallBack($path, $method);
         
         if ($callback === false) {
             $code = 404;
-
             $this->response->setStatusCode($code);
-            return $this->loadView("errors/_404", compact('code'));
+            return RenderEngine::renderView("errors/_404", compact('code'));
         }
 
         if (is_string($callback)) {
-            return $this->renderView($callback);
+            return RenderEngine::renderView($callback);
         }
 
         if (is_array($callback)) {
@@ -45,26 +119,6 @@ class Router
 
         return call_user_func($callback, $this->request);
     }
-
-    public function renderView($view, $params = []) {
-        $layout = $this->loadLayout();
-        $view = $this->loadView($view, $params);
-        return str_replace("{{content}}", $view, $layout);
-    }
-
-    protected function loadView($view, $params) {
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
-
-        ob_start();
-        include_once Application::$ROOT_DIR . "/view/" . $view . ".php";
-        return ob_get_clean();
-    }
-
-    protected function loadLayout() {
-        ob_start();
-        include_once Application::$ROOT_DIR . "/view/layouts/main.php";
-        return ob_get_clean();
-    }
 }
+
+?>
