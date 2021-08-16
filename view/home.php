@@ -1,3 +1,3 @@
 <h1>
-    Home <?php echo $name; ?>
+    Welcome to MVC artithucture. <?php echo $name; ?>
 </h1>

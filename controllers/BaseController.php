@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller;
+namespace app\controllers;
 
 use app\core\view\RenderEngine;
 use app\core\Application;

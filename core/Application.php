@@ -16,7 +16,7 @@ use app\core\router\Routes;
 class Application 
 {
     // App properties
-    public static App $app;
+    public static Application $app;
     public static string $ROOT;
     // App tools
     public Router $router;
@@ -50,7 +50,7 @@ class Application
     {
         if (!isset(self::$app))
         {
-            self::$app = new App($root_dir);
+            self::$app = new Application($root_dir);
             Routes::getRoutes();
         }
         return self::$app;

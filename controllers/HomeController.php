@@ -6,7 +6,7 @@ class HomeController extends BaseController
 {
     public function index($params) 
     {
-        return $this->render('home');
+        return $this->render('home', ['name' => 'User']);
     }
 
     public function about($params)
