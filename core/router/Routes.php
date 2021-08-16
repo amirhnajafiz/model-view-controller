@@ -22,6 +22,7 @@ class Routes
 
         // Write your routes here
         $app->router->get('/', [HomeController::class, 'index'])->name("home");
+        $app->router->get('/about', [HomeController::class, 'about'])->name("about");
     }
 }
 

@@ -2,7 +2,7 @@
 
 namespace app\core\view;
 
-use app\core\App;
+use app\core\Application;
 
 /**
  * RenderEngine is the class that does the rendring and viewing stuff.
@@ -40,7 +40,7 @@ class RenderEngine
         }
 
         ob_start();
-        include_once App::$ROOT . "/view/" . $view . ".php";
+        include_once Application::$ROOT . "/view/" . $view . ".php";
         return ob_get_clean();
     }
 }

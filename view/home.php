@@ -1,3 +1,4 @@
 <h1>
-    Welcome to MVC artithucture. <?php echo $name; ?>
+    Welcome to mvc architecture <?php echo $name; ?>.
 </h1>
+<a href="/about">About us.</a>

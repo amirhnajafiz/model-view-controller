@@ -19,7 +19,7 @@ class Router
     public Request $request;
     public Response $response;
     // Router routes
-    protected $routes = [];
+    public $routes = [];
 
     /**
      * The constructor of our router.

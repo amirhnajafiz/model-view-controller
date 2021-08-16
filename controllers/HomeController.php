@@ -11,6 +11,6 @@ class HomeController extends BaseController
 
     public function about($params)
     {
-        return $this->redirect('home');
+        return $this->render('about');
     }
 }
