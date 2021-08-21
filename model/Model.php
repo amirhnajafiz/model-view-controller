@@ -2,14 +2,14 @@
 
 namespace app\model;
 
-use app\model\Database;
+use app\core\Database;
 
 /**
  * Model class is the superclass of all our models,
  * which has a connector and table_name. 
  * 
  */
-abstract class Model 
+class Model 
 {
     // Private fields
     protected $pdo;
