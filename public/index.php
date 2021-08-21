@@ -7,8 +7,6 @@ use app\model\Model;
 
 $app = Application::get_instance(dirname(__DIR__));
 
-new Model();
-
 $app->run();
 
 ?>

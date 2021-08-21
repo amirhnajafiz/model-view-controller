@@ -23,6 +23,13 @@ class BaseController
         return RenderEngine::renderView($view, $params);
     }
 
+    /**
+     * In each controller, there is a base method for redirection.
+     *
+     * @param string $path target page
+     * @param integer $code status code
+     * @return void
+     */
     public function redirect(string $path, int $code = 301) 
     {
         return Application::$app->response->redirect($path, $code);

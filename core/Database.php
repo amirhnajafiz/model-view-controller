@@ -59,6 +59,7 @@ class Database
         return $this->pdo;
     }
 
+    // .env reader
     private function init_env()
     {
         $env = [];
