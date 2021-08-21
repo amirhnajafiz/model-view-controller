@@ -40,7 +40,7 @@ class RenderEngine
         }
 
         ob_start();
-        include_once Application::$ROOT . "/view/" . $view . ".php";
+        include_once Application::$ROOT . "/view/" . $view . ".blade.php";
         return ob_get_clean();
     }
 }
