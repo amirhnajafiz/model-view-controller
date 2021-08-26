@@ -1,14 +1,24 @@
 {
-    "name": "ehsanmody/mvc",
-    "description": "M54 First MVC Project",
+    "name": "amirhnajafiz/basic_mvc",
+    "description": "Simple MVC architecture website by PHP",
     "authors": [{
-        "name": "Ehsan Kashfi",
-        "email": "ehsanmody04@gmail.com"
+        "name": "Amirhossein Najafizadeh",
+        "email": "najafizadeh21@gmail.com"
     }],
     "require": {},
     "autoload": {
         "psr-4": {
             "app\\": "./"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "app\\"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.8"
     }
 }
