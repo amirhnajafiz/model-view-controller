@@ -1,28 +1,32 @@
-# Basic MVC
-
 <p align="center">
     <img src="/public/assets/demo.png" width="700" />
 </p>
 
-Implementing simple Model View Controller website with PHP.
+<br />
 
-This is the base of a MVC project. All routes and models and controllers are already setupt.<br />
+Implementing simple Model View Controller website with PHP.
+This is the base of a MVC project. All routes and models and controllers are already setupt.
 Just clone the project and use it.
 
 ## How to use?
-This project will build a basic website based on MVC.<br />
-To customize it, first install composer. <br />
+
+This project will build a basic website based on MVC.
+To customize it, first install composer.
+
 Clone the project by:
+
 ```shell
 git clone https://github.com/amirhnajafiz/PHP-MVC.git
 ```
 
 Enter the main dir:
+
 ```shell
 cd Basic-MVC
 ```
 
 Update the composer for vendor creation:
+
 ```shell 
 composer update
 ```
@@ -39,4 +43,3 @@ php -S 127.0.0.1:8080 -t public
 ```
 
 All done.
-
